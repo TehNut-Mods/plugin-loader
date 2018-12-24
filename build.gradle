@@ -1,0 +1,22 @@
+plugins {
+	id 'fabric-loom' version '0.1.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+archivesBaseName = "PluginLoader"
+version = "1.14-fabric-1.0.0"
+
+minecraft {
+    refmapName = 'pluginloader-refmap.json'
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:18w50a"
+	mappings "net.fabricmc:yarn:18w50a.7"
+	modCompile "net.fabricmc:fabric-loader:0.2.0.65"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modCompile "net.fabricmc:fabric:0.1.1.47"
+}

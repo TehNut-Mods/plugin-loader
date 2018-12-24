@@ -1,0 +1,10 @@
+{
+  "id": "pluginloader",
+  "name": "plugin-loader",
+  "description": "A lightweight library providing a hard-dependency-free way to load compatibility plugins.",
+  "version": "1.0.0",
+  "side": "universal",
+  "mixins": {
+    "common": "pluginloader.common.json"
+  }
+}

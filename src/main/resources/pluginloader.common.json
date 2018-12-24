@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "info.tehnut.pluginloader.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "pluginloader-refmap.json",
+  "mixins": [
+    "MixinFabricLoader"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

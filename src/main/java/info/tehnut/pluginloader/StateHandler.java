@@ -1,0 +1,21 @@
+package info.tehnut.pluginloader;
+
+public class StateHandler {
+
+    public static void loaderDiscovery() {
+        PluginLoader.LOGGER.info("Discovering plugin loaders");
+        PluginLoader.PRIMARY_LOADER.discover();
+        PluginLoader.LOGGER.info("Initializing plugin loaders");
+        PluginLoader.PRIMARY_LOADER.initialize();
+    }
+
+    public static void pluginDiscovery() {
+        PluginLoader.LOGGER.info("Discovering plugins");
+        PluginLoader.LOADERS.forEach(PluginLoader::discover);
+    }
+
+    public static void pluginInitialization() {
+        PluginLoader.LOGGER.info("Initializing plugins");
+        PluginLoader.LOADERS.forEach(PluginLoader::initialize);
+    }
+}
