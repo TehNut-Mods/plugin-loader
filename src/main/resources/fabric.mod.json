@@ -5,6 +5,6 @@
   "version": "1.0.0",
   "side": "universal",
   "mixins": {
-    "common": "pluginloader.common.json"
+    "common": "plugin-loader.common.json"
   }
 }
