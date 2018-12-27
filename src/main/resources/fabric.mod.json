@@ -2,9 +2,18 @@
   "id": "pluginloader",
   "name": "plugin-loader",
   "description": "A lightweight library providing a hard-dependency-free way to load compatibility plugins.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "side": "universal",
+  "authors": [
+    {
+      "name": "TehNut",
+      "website": "https://tehnut.info",
+      "email": "nick@tehnut.info"
+    }
+  ],
   "mixins": {
-    "common": "plugin-loader.common.json"
+    "common": "pluginloader.common.json",
+    "client": "pluginloader.client.json",
+    "server": "pluginloader.server.json"
   }
 }

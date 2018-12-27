@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "info.tehnut.pluginloader.mixin.server",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "pluginloader-refmap.json",
+  "mixins": [
+    "MixinMinecraftDedicatedServer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

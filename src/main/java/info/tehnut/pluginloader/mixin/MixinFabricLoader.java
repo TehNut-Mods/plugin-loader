@@ -17,14 +17,4 @@ public class MixinFabricLoader {
     public void loaderDiscovery(CallbackInfo callbackInfo) {
         StateHandler.loaderDiscovery();
     }
-
-    @Inject(method = "getInitializers", at = @At("TAIL"), remap = false)
-    public void handlePlugins(Class<?> clazz, CallbackInfoReturnable callbackInfo) {
-        // These are the last time this method is called on a dedicated client or server, so any other time, we want to ignore it
-        if (clazz != DedicatedServerModInitializer.class && clazz != ClientModInitializer.class)
-            return;
-
-        StateHandler.pluginDiscovery();
-        StateHandler.pluginInitialization();
-    }
 }
