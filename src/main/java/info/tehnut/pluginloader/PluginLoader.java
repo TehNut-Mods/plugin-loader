@@ -16,7 +16,7 @@ public final class PluginLoader {
     static final List<PluginLoader> LOADERS = new ArrayList<>();
     static final Logger LOGGER = LogManager.getLogger("PluginLoader");
     static final PluginLoader PRIMARY_LOADER = new PluginLoaderBuilder("pluginloader")
-            .withDiscoverer((owningMod, plugins) -> FabricLoader.INSTANCE.getMods().forEach(modContainer -> {
+            .withDiscoverer((owningMod, plugins) -> FabricLoader.INSTANCE.getModContainers().forEach(modContainer -> {
                 List<PluginContainer> loaders = LoaderUtil.getLoadersForMod(modContainer);
                 if (loaders != null)
                     plugins.put(modContainer.getInfo().getId(), loaders);
@@ -61,14 +61,14 @@ public final class PluginLoader {
         plugins.forEach((modId, containers) -> {
             containers.forEach(container -> {
                 try {
-                    Class<?> pluginClass = Class.forName(container.getInfo().getInitializer());
-                    ActionResult result = validationStrategy.validate(pluginClass, container);
+                    ActionResult result = validationStrategy.validate(container.getInfo().getInitializer(), container);
                     if (result == ActionResult.PASS)
                         return;
 
                     if (result == ActionResult.FAILURE)
                         return;
 
+                    Class<?> pluginClass = Class.forName(container.getInfo().getInitializer());
                     initializer.accept(pluginClass, container);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
