@@ -5,6 +5,7 @@ public class StateHandler {
     public static void loaderDiscovery() {
         PluginLoader.LOGGER.info("Discovering plugin loaders");
         PluginLoader.PRIMARY_LOADER.discover();
+        PluginLoader.LOGGER.info("Discovered {} plugin loaders", PluginLoader.LOADERS.size());
         PluginLoader.LOGGER.info("Initializing plugin loaders");
         PluginLoader.PRIMARY_LOADER.initialize();
     }

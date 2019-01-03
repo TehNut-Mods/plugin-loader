@@ -55,6 +55,10 @@ public final class PluginLoader {
 
     public void discover() {
         discoverer.accept(owner, plugins);
+        if (this != PRIMARY_LOADER) {
+            int pluginCount = plugins.entrySet().stream().mapToInt(value -> value.getValue().size()).sum();
+            LOGGER.info("Discovered {} plugins for {}", pluginCount, owner.getInfo().getName());
+        }
     }
 
     public void initialize() {
