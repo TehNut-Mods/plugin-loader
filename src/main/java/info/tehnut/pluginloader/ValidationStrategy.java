@@ -55,7 +55,7 @@ public interface ValidationStrategy {
                 boolean flag = false;
 
                 for (String iface : reader.getInterfaces())
-                    if (iface.equals(clazz.getName()))
+                    if (iface.equals(clazz.getName().replace(".", "/")))
                         flag = true;
 
                 if (flag)
