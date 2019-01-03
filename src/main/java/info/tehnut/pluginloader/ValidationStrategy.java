@@ -14,7 +14,7 @@ public interface ValidationStrategy {
      * If the plugin is valid, return {@link ActionResult#SUCCESS}.
      *
      * If the plugin is not valid, you may either return {@link ActionResult#PASS} to just skip over the plugin or
-     * {@link ActionResult#FAILURE} to throw an {@link PluginException}.
+     * {@link ActionResult#FAILURE} to throw a {@link PluginException}.
      *
      * @param pluginClass The plugin class
      * @param container The plugin container
@@ -23,6 +23,13 @@ public interface ValidationStrategy {
      */
     ActionResult validate(String pluginClass, PluginContainer container);
 
+    /**
+     * Appends another condition to the validation tree. The original is always checked first this tree will short circuit
+     * on the first {@link ActionResult#PASS} or {@link ActionResult#FAILURE}.
+     *
+     * @param other The next condition for the validation tree
+     * @return A validator that wraps both the original as well as the new condition
+     */
     default ValidationStrategy and(ValidationStrategy other) {
         return (pluginClass, container) -> {
             ActionResult first = validate(pluginClass, container);
