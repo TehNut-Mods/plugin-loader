@@ -2,7 +2,7 @@
   "id": "pluginloader",
   "name": "plugin-loader",
   "description": "A lightweight library providing a hard-dependency-free way to load compatibility plugins.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "side": "universal",
   "authors": [
     {
