@@ -31,16 +31,17 @@ public final class PluginLoaderBuilder {
     private Runnable postCall = DEFAULT_POST;
 
     /**
-     * Creates a new PluginLoaderBuilder instance to customize the behavior of this loader. The passed modid is used by
-     * the default {@link #discoverer} to discover plugins to be loaded. It must be an actively loaded modid. These plugins should be <code>$modid.plugin.json</code>
-     * and located in a <code>/plugins/</code> directory at the root of the jar.
+     * Creates a new PluginLoaderBuilder instance to customize the behavior of this loader. The passed modId is used by
+     * the default {@link #discoverer} to discover plugins to be loaded. It must be an actively loaded modId. These plugins
+     * should be called <code>${modId}.plugin.json</code> and located in a <code>/plugins/</code> directory at the root
+     * of the jar.
      *
-     * @param modid The mod that owns this loader
+     * @param modId The mod that owns this loader
      */
-    public PluginLoaderBuilder(String modid) {
+    public PluginLoaderBuilder(String modId) {
         this.owner = FabricLoader.INSTANCE.getModContainers()
                 .stream()
-                .filter(m -> m.getInfo().getId().equals(modid))
+                .filter(m -> m.getInfo().getId().equals(modId))
                 .findFirst()
                 .orElse(null);
 
@@ -112,6 +113,14 @@ public final class PluginLoaderBuilder {
         return this;
     }
 
+    /**
+     * Constructs a new {@link PluginLoader} instance from the behaviors set. If an invalid modId was provided to
+     * {@link #PluginLoaderBuilder(String)}, an exception will be thrown.
+     *
+     * Due to a side effect of the PluginLoader constructor, calling this will also register the instance for handling.
+     *
+     * @return A new PluginLoader instance with the behaviors set.
+     */
     public PluginLoader build() {
         if (invalid)
             throw new RuntimeException(new PluginException("Could not locate owning mod container"));

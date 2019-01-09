@@ -39,10 +39,23 @@ public interface ValidationStrategy {
         };
     }
 
+    /**
+     * @see #hasInterface(Class, boolean)
+     *
+     * @param clazz The interface class
+     * @return A validator that checks if the plugin class implements a given interface.
+     */
     static ValidationStrategy hasInterface(Class<?> clazz) {
         return hasInterface(clazz, false);
     }
 
+    /**
+     * Checks if the plugin class implements an interface without loading the plugin class.
+     *
+     * @param clazz    The interface class
+     * @param hardFail If this validator should throw a {@link PluginException} if the interface is not implemented
+     * @return A validator that checks if the plugin class implements a given interface.
+     */
     static ValidationStrategy hasInterface(Class<?> clazz, boolean hardFail) {
         return ((pluginClass, info) -> {
             if (clazz.getName().equals(pluginClass))
