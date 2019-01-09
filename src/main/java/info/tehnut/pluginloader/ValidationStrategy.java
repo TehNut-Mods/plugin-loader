@@ -65,4 +65,20 @@ public interface ValidationStrategy {
             return hardFail ? ActionResult.FAILURE : ActionResult.PASS;
         });
     }
+
+    /**
+     * @deprecated Use {@link #hasInterface(Class)}.
+     */
+    @Deprecated
+    static ValidationStrategy instanceOf(Class<?> clazz) {
+        return hasInterface(clazz);
+    }
+
+    /**
+     * @deprecated Use {@link #hasInterface(Class, boolean)}.
+     */
+    @Deprecated
+    static ValidationStrategy instanceOf(Class<?> clazz, boolean hardFail) {
+        return hasInterface(clazz, hardFail);
+    }
 }
