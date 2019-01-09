@@ -21,7 +21,7 @@ public final class PluginLoader {
                 if (loaders != null)
                     plugins.put(modContainer.getInfo().getId(), loaders);
             }))
-            .withValidator(ValidationStrategy.instanceOf(LoaderCreator.class))
+            .withValidator(ValidationStrategy.hasInterface(LoaderCreator.class))
             .withInitializer((pluginClass, container) -> {
                 try {
                     LoaderCreator loaderCreator = (LoaderCreator) container.getOwner().getAdapter().createInstance(pluginClass, new LanguageAdapter.Options());

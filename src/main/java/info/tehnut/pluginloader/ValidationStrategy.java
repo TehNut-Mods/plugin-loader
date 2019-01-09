@@ -40,11 +40,11 @@ public interface ValidationStrategy {
         };
     }
 
-    static ValidationStrategy instanceOf(Class<?> clazz) {
-        return instanceOf(clazz, false);
+    static ValidationStrategy hasInterface(Class<?> clazz) {
+        return hasInterface(clazz, false);
     }
 
-    static ValidationStrategy instanceOf(Class<?> clazz, boolean hardFail) {
+    static ValidationStrategy hasInterface(Class<?> clazz, boolean hardFail) {
         return ((pluginClass, info) -> {
             if (clazz.getName().equals(pluginClass))
                 return ActionResult.SUCCESS;
