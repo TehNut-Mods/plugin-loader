@@ -8,7 +8,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MinecraftDedicatedServer.class)
-public class MixinMinecraftDedicatedServer {
+public final class MixinMinecraftDedicatedServer {
+
+    private MixinMinecraftDedicatedServer() {}
 
     @Inject(method = "setupServer", at = @At("HEAD"))
     public void setupServer(CallbackInfoReturnable<Boolean> info) {

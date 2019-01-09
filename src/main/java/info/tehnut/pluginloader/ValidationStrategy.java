@@ -1,8 +1,8 @@
 package info.tehnut.pluginloader;
 
 import net.fabricmc.loader.launch.common.FabricLauncherBase;
-import org.objectweb.asm.ClassReader;
 import net.minecraft.util.ActionResult;
+import org.objectweb.asm.ClassReader;
 
 import java.io.IOException;
 
@@ -17,8 +17,7 @@ public interface ValidationStrategy {
      * {@link ActionResult#FAILURE} to throw a {@link PluginException}.
      *
      * @param pluginClass The plugin class
-     * @param container The plugin container
-     *
+     * @param container   The plugin container
      * @return whether this plugin is valid or not.
      */
     ActionResult validate(String pluginClass, PluginContainer container);

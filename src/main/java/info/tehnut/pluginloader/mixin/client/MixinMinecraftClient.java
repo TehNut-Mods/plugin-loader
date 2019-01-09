@@ -8,7 +8,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftClient.class)
-public class MixinMinecraftClient {
+public final class MixinMinecraftClient {
+
+    private MixinMinecraftClient() {}
 
     @Inject(method = "init", at = @At("HEAD"))
     public void handlePlugins(CallbackInfo info) {

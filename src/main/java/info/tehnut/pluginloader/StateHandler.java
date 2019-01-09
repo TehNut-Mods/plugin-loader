@@ -1,6 +1,8 @@
 package info.tehnut.pluginloader;
 
-public class StateHandler {
+public final class StateHandler {
+
+    private StateHandler() {}
 
     public static void loaderDiscovery() {
         PluginLoader.LOGGER.info("Discovering plugin loaders");

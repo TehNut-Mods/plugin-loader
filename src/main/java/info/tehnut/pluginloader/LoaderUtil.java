@@ -11,10 +11,12 @@ import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 
-public class LoaderUtil {
+final class LoaderUtil {
 
     static final JsonParser PARSER = new JsonParser();
     static final Gson GSON = new Gson();
+
+    private LoaderUtil() {}
 
     public static List<PluginContainer> getLoadersForMod(ModContainer modContainer) {
         try {
