@@ -26,11 +26,11 @@ public final class PluginLoader {
             .withValidator(ValidationStrategy.hasInterface(LoaderCreator.class).and((pluginClass, container) -> {
                 JsonElement containerData = container.getInfo().getData();
                 if (!containerData.isJsonObject())
-                    return ActionResult.PASS;
+                    return ActionResult.SUCCESS;
 
                 JsonElement sideElement = containerData.getAsJsonObject().get("side");
                 if (sideElement == null || !sideElement.isJsonPrimitive())
-                    return ActionResult.PASS;
+                    return ActionResult.SUCCESS;
 
                 EnvType side;
                 try {
