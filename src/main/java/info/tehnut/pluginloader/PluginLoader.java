@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 public final class PluginLoader {
 
@@ -106,6 +107,10 @@ public final class PluginLoader {
 
     public ModContainer getOwner() {
         return owner;
+    }
+
+    public List<PluginContainer> getPlugins() {
+        return plugins.values().stream().flatMap(List::stream).collect(Collectors.toList());
     }
 
     public List<PluginContainer> getPlugins(String modId) {
