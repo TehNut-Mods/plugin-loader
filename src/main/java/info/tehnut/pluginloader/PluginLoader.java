@@ -1,5 +1,7 @@
 package info.tehnut.pluginloader;
 
+import com.google.gson.JsonElement;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.FabricLoader;
 import net.fabricmc.loader.ModContainer;
 import net.fabricmc.loader.language.LanguageAdapter;
@@ -21,7 +23,26 @@ public final class PluginLoader {
                 if (loaders != null)
                     plugins.put(modContainer.getInfo().getId(), loaders);
             }))
-            .withValidator(ValidationStrategy.hasInterface(LoaderCreator.class))
+            .withValidator(ValidationStrategy.hasInterface(LoaderCreator.class).and((pluginClass, container) -> {
+                JsonElement containerData = container.getInfo().getData();
+                if (!containerData.isJsonObject())
+                    return ActionResult.PASS;
+
+                JsonElement sideElement = containerData.getAsJsonObject().get("side");
+                if (sideElement == null || !sideElement.isJsonPrimitive())
+                    return ActionResult.PASS;
+
+                EnvType side;
+                try {
+                    String value = sideElement.getAsString().toUpperCase(Locale.ROOT);
+                    side = value.equals("UNIVERSAL") ? null : EnvType.valueOf(value);
+                } catch (IllegalArgumentException e) {
+                    side = null;
+                }
+
+                EnvType activeSide = FabricLoader.INSTANCE.getEnvironmentHandler().getEnvironmentType();
+                return side == null || side == activeSide ? ActionResult.SUCCESS : ActionResult.PASS;
+            }))
             .withInitializer((pluginClass, container) -> {
                 try {
                     LoaderCreator loaderCreator = (LoaderCreator) container.getOwner().getAdapter().createInstance(pluginClass, new LanguageAdapter.Options());

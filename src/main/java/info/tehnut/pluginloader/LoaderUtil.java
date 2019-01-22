@@ -84,7 +84,7 @@ final class LoaderUtil {
 
         String id = json.getAsJsonPrimitive("id").getAsString();
         String initializer = json.getAsJsonPrimitive("initializer").getAsString();
-        JsonElement data = json.has("data") ? json.get("data") : null;
+        JsonElement data = json.has("data") ? json.get("data") : JsonNull.INSTANCE;
         return new PluginInfo(id, initializer, data);
     }
 
